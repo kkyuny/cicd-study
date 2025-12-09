@@ -1,11 +1,12 @@
 name: on-premise-cicd
+# 수동 설정
 on:
   workflow_dispatch:
     inputs:
       tags:
         description: 'Set Tags Name'
         required: true
-        default: master
+        default: main
 
 jobs:
   build:
