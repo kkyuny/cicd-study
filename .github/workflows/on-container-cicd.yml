@@ -28,34 +28,34 @@ jobs:
       - name: Build with Gradlew
         run: ./gradlew clean test bootJar
 
-      - name: docker image build
-        run: docker build -t ${{ secrets.DOCKERHUB_USER_NAME }}/cicd-study .
+      #- name: docker image build
+      #  run: docker build -t ${{ secrets.DOCKERHUB_USER_NAME }}/cicd-study .
 
-      - name: docker hub login
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USER_NAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      #- name: docker hub login
+      #  uses: docker/login-action@v2
+      #  with:
+      #    username: ${{ secrets.DOCKERHUB_USER_NAME }}
+      #    password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: docker image push
-        run: docker push ${{ secrets.DOCKERHUB_USER_NAME }}/cicd-study
+      #- name: docker image push
+      #  run: docker push ${{ secrets.DOCKERHUB_USER_NAME }}/cicd-study
 
 
-  run-docker-iamge-on-ec2:
-    runs-on: self-hosted
-    needs:
-      - build
+  #run-docker-iamge-on-ec2:
+  #  runs-on: self-hosted
+  #  needs:
+  #    - build
 
-    steps:
-      - name: docker pull
-        run: docker pull ${{ secrets.DOCKERHUB_USER_NAME }}/cicd-study
+  #  steps:
+  #    - name: docker pull
+  #     run: docker pull ${{ secrets.DOCKERHUB_USER_NAME }}/cicd-study
 
-      - name: docker app service container stop
-        run: docker-compose down app
+  #    - name: docker app service container stop
+  #      run: docker-compose down app
 
-      - name: docker app service container start
-        run: docker-compose up app -d
+  #    - name: docker app service container start
+  #      run: docker-compose up app -d
 
-      - name: delete old docker image
-        run: docker system prune -f
+  #    - name: delete old docker image
+  #      run: docker system prune -f
 
