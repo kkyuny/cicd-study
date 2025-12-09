@@ -1,5 +1,7 @@
 HELP.md
-.gradle
+.gradle/
+
+### Build directories ###
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -18,7 +20,7 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -40,6 +42,11 @@ out/
 .env
 
 ### Build Artifacts ###
-*.jar
-*.war
-*.zip
+# *.jar
+
+# ✔ build/libs 아래 결과물만 무시
+**/build/libs/*.jar
+
+# war, zip도 같은 폴더에서만 무시
+**/build/libs/*.war
+**/build/libs/*.zip
